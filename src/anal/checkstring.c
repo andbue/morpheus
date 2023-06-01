@@ -15,10 +15,51 @@ Dialect WantDialects = ALL_DIAL;
 
 gk_word BlankWord, CheckWord;
 
-int
-teststring(char *string)
+char *anal_buf();
+
+char *teststring(char *string)
 {
-	return(checkstring(string,(PrntFlags)0,stdout));
+
+	int nanals = 0;
+	int nlems = 0;
+	set_lang(LATIN);
+
+	PrntFlags prntflags = (PrntFlags)2560;
+	
+	gk_word * Gkword = NULL;
+	FILE * fcurout = stdout;
+
+	if( is_blank(string) ) return(0);
+	if( strlen(string) >= MAXWORDSIZE ) return(0);
+
+	Gkword = (gk_word *) CreatGkword(1 );
+
+	set_dialect(Gkword,WantDialects);
+	set_workword(Gkword,string);
+	set_prntflags(Gkword,prntflags);
+	set_rawword(Gkword,workword_of(Gkword));
+	standword(workword_of(Gkword));
+	stand_phonetics(Gkword);
+	
+	checkstring1(Gkword);
+
+	nanals = totanal_of(Gkword);
+
+	char anal[LONGSTRING*nanals];
+	anal[0] = 0;
+
+	if( nanals > 0 ) {
+		sPrntAnalyses(anal, Gkword);
+	}
+
+	char *res = strdup(anal);
+	FreeGkword(Gkword);
+	return(res);
+}
+
+void freeme(char *ptr)
+{
+    free(ptr);
 }
 
 checkstring(char *string, PrntFlags prntflags, FILE *fout)

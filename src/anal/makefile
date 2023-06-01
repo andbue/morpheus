@@ -2,7 +2,7 @@
 LEXLIB = -lfl
 
 INCLUDE=../includes
-CFLAGS= -O2 -I${INCLUDE}   -Wno-implicit-int   -Wno-implicit-function-declaration
+CFLAGS= -O2 -I${INCLUDE}   -Wno-implicit-int   -Wno-implicit-function-declaration -fPIC
 RM=rm
 CC=cc
 CC=gcc
@@ -14,6 +14,7 @@ MORPHLIB=../morphlib/morphlib.a
 GENERLIB=../gener/gener.a
 DICTLIB=../gkdict/gkdict.a
 ANALLIB=anal.a
+
 LIBS=${GENERLIB} ${ENDLIB} ${DICTLIB} ${MORPHLIB} ${GREEKLIB} 
 
 LSJDIR=/local/text/lsj
@@ -31,7 +32,9 @@ checkverb.o \
 checkword.o \
 dictstems.o \
 prntanal.o \
+sprntanal.o \
 prvb.o 
+
 
 ${ANALLIB}: ${ANALOBJ}
 	ar rv ${ANALLIB} ${ANALOBJ}
@@ -50,6 +53,9 @@ lcnt: lcnt.o ${ANALLIB} ${LIBS}
 
 cruncher:stdiomorph.o ${ANALLIB} ${LIBS}
 	${CC} -o cruncher stdiomorph.o ../gener/genwd.o ${ANALLIB} ${LIBS}
+
+libmorpheus:checkstring.o ${ANALLIB} ${LIBS}
+	${CC} -shared -o libmorpheus.so checkstring.o ${ANALLIB} ${LIBS}
 
 morphcheck:morphcheck.o ${LSJDIR}/MDBlib.o ${LSJDIR}/flen.o ${ANALOBJ} ${LIBS}
 	${CC} -o morphcheck morphcheck.o ${LSJDIR}/MDBlib.o ${LSJDIR}/flen.o ../gener/genwd.o ${ANALOBJ} ${LIBS} ${LEXLIB}

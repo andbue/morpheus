@@ -1,5 +1,6 @@
 
 /* checkstring.c */
+char * teststring(char *);
 int checkstring(char *, PrntFlags, FILE *);
 int checkstring1(gk_word *);
 int checkstring2(gk_word *);

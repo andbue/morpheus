@@ -1,5 +1,5 @@
 INCLUDE=../includes
-CFLAGS= -O2 -I${INCLUDE}   -Wno-implicit-int   -Wno-implicit-function-declaration
+CFLAGS= -O2 -I${INCLUDE}   -Wno-implicit-int   -Wno-implicit-function-declaration -fPIC
 RM=rm
 ENDLIB=gkends.a
 CC=cc

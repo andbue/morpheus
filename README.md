@@ -24,3 +24,11 @@ Running the cruncher
 ```
 MORPHLIB=stemlib bin/cruncher < wordlist > crunched
 ```
+Building the python wrapper
+---------------------------
+```
+cd src/anal
+make libmorpheus
+python3 test.py
+```
+

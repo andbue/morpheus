@@ -13,11 +13,11 @@ CC=cc
 CC=gcc
 #CFLAGS= -O -I${INCLUDE}   -g
 #CFLAGS= -O -I${INCLUDE}   -Wstrict-prototypes   -Wmissing-prototypes
-CFLAGS= -O2 -I${INCLUDE}   -Wno-implicit-int   -Wno-implicit-function-declaration
+CFLAGS= -O2 -I${INCLUDE}   -Wno-implicit-int   -Wno-implicit-function-declaration -fPIC
 LINTFLAGS= -I${INCLUDE} -DDEBUG
 RM=/bin/rm -f
 
-LOADLIBES= -ll
+LOADLIBES= -lfl
 
 ALL=gkdict.a indexcomps indexnoms indexvbs  newlems newlems2 setquant splitlems splitlat latvb conj1 combitype latnom fixhesc fixgend
 

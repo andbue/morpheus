@@ -2,7 +2,8 @@
 
 #include "checkword.proto.h"
 
-extern quickflag;
+/*extern quickflag;*/
+/*int quickflag = 0;*/
 
 long prevmem, curmem;
 static int meminit = 0;
@@ -10,7 +11,7 @@ long startmem;
 checkword(gk_word *Gkword)
 {
 	int rval = 0;
-
+	int quickflag = 0;
 	/*
 	 * if NO_AUGMENT is set, then we are fishing for an epic verb form,
 	 * so we don't need to check for indeclinables and nominal forms.

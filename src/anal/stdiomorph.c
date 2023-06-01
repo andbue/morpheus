@@ -121,7 +121,7 @@ printf("outname [%s]\n", outname );
       errflg++;
     }
   }
-  
+ 
   if (optind >= argc) {
     finput = stdin;
     foutput = stdout;
